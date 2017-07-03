@@ -23,4 +23,7 @@ namespace DotnetcoreMVC20.Web.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
     }
+
+	
+
 }

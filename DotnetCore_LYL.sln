@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Standard", "Common.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetcoreMVC20.Web", "DotnetcoreMVC20.Web\DotnetcoreMVC20.Web.csproj", "{B43BCF0E-26F8-4AAE-9E07-600EE5D4E300}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetCore.Entity", "DotnetCore.Entity\DotnetCore.Entity.csproj", "{4DD36727-45AA-45DB-8553-A366868401F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetCore.DAL", "DotnetCore.DAL\DotnetCore.DAL.csproj", "{9B2F7A07-64F7-4A2A-8D96-4937FB6CF333}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{B43BCF0E-26F8-4AAE-9E07-600EE5D4E300}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B43BCF0E-26F8-4AAE-9E07-600EE5D4E300}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B43BCF0E-26F8-4AAE-9E07-600EE5D4E300}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DD36727-45AA-45DB-8553-A366868401F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DD36727-45AA-45DB-8553-A366868401F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DD36727-45AA-45DB-8553-A366868401F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DD36727-45AA-45DB-8553-A366868401F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B2F7A07-64F7-4A2A-8D96-4937FB6CF333}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B2F7A07-64F7-4A2A-8D96-4937FB6CF333}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B2F7A07-64F7-4A2A-8D96-4937FB6CF333}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B2F7A07-64F7-4A2A-8D96-4937FB6CF333}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

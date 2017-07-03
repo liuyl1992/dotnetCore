@@ -14,59 +14,64 @@ using Microsoft.Extensions.Options;
 using DotnetcoreMVC20.Web.Data;
 using DotnetcoreMVC20.Web.Models;
 using DotnetcoreMVC20.Web.Services;
+using DotnetCore.DAL;
 
 namespace DotnetcoreMVC20.Web
 {
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+	public class Startup
+	{
+		public Startup(IConfiguration configuration)
+		{
+			Configuration = configuration;
+		}
 
-        public IConfiguration Configuration { get; }
+		public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+		// This method gets called by the runtime. Use this method to add services to the container.
+		public void ConfigureServices(IServiceCollection services)
+		{
+			services.AddDbContext<ApplicationDbContext>(options =>
+				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+			//链接到sql server数据库
+			services.AddDbContext<SchoolContext>(options =>
+				options.UseSqlServer(Configuration.GetConnectionString("ConsumerConnection")));
 
-            // Add application services.
-            services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
+			services.AddIdentity<ApplicationUser, IdentityRole>()
+				.AddEntityFrameworkStores<ApplicationDbContext>()
+				.AddDefaultTokenProviders();
 
-            services.AddMvc();
-        }
+			// Add application services.
+			services.AddTransient<IEmailSender, AuthMessageSender>();
+			services.AddTransient<ISmsSender, AuthMessageSender>();
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
-                app.UseDatabaseErrorPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
+			services.AddMvc();
+		}
 
-            app.UseStaticFiles();
+		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+		{
+			if (env.IsDevelopment())
+			{
+				app.UseDeveloperExceptionPage();
+				app.UseBrowserLink();
+				app.UseDatabaseErrorPage();
+			}
+			else
+			{
+				app.UseExceptionHandler("/Home/Error");
+			}
 
-            app.UseAuthentication();
+			app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
-        }
-    }
+			app.UseAuthentication();
+
+			app.UseMvc(routes =>
+			{
+				routes.MapRoute(
+					name: "default",
+					template: "{controller=Home}/{action=Index}/{id?}");
+			});
+		}
+	}
 }
