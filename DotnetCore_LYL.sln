@@ -5,11 +5,15 @@ VisualStudioVersion = 15.0.26621.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Standard", "Common.Standard\Common.Standard.csproj", "{EB135902-54FF-4937-97A5-554BFBE9F6D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetcoreMVC20.Web", "DotnetcoreMVC20.Web\DotnetcoreMVC20.Web.csproj", "{B43BCF0E-26F8-4AAE-9E07-600EE5D4E300}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetcoreMVC20.Web", "DotnetcoreMVC20.Web\DotnetcoreMVC20.Web.csproj", "{B43BCF0E-26F8-4AAE-9E07-600EE5D4E300}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetCore.Entity", "DotnetCore.Entity\DotnetCore.Entity.csproj", "{4DD36727-45AA-45DB-8553-A366868401F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetCore.Entity", "DotnetCore.Entity\DotnetCore.Entity.csproj", "{4DD36727-45AA-45DB-8553-A366868401F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetCore.DAL", "DotnetCore.DAL\DotnetCore.DAL.csproj", "{9B2F7A07-64F7-4A2A-8D96-4937FB6CF333}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetCore.DAL", "DotnetCore.DAL\DotnetCore.DAL.csproj", "{9B2F7A07-64F7-4A2A-8D96-4937FB6CF333}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{54A47220-36C4-4CFE-B70E-7AEE943665EA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DockerMVC.Web", "DockerMVC.Web\DockerMVC.Web.csproj", "{6EFA6996-B12D-4D54-9CBC-44B349F558B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{9B2F7A07-64F7-4A2A-8D96-4937FB6CF333}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B2F7A07-64F7-4A2A-8D96-4937FB6CF333}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B2F7A07-64F7-4A2A-8D96-4937FB6CF333}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54A47220-36C4-4CFE-B70E-7AEE943665EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54A47220-36C4-4CFE-B70E-7AEE943665EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54A47220-36C4-4CFE-B70E-7AEE943665EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54A47220-36C4-4CFE-B70E-7AEE943665EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EFA6996-B12D-4D54-9CBC-44B349F558B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EFA6996-B12D-4D54-9CBC-44B349F558B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EFA6996-B12D-4D54-9CBC-44B349F558B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EFA6996-B12D-4D54-9CBC-44B349F558B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
