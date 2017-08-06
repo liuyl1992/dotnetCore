@@ -11,7 +11,7 @@ using System;
 namespace DotnetCore.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    [Migration("20170703160710_MyFirstMigration")]
+    [Migration("20170710134322_MyFirstMigration")]
     partial class MyFirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

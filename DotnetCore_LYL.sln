@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetCore.Entity", "Dotnet
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetCore.DAL", "DotnetCore.DAL\DotnetCore.DAL.csproj", "{9B2F7A07-64F7-4A2A-8D96-4937FB6CF333}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{54A47220-36C4-4CFE-B70E-7AEE943665EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetCore.Common", "..\DotnetCore.Common\DotnetCore.Common.csproj", "{57AA9278-5580-4EC7-B969-6C7AA01D33B4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DockerMVC.Web", "DockerMVC.Web\DockerMVC.Web.csproj", "{6EFA6996-B12D-4D54-9CBC-44B349F558B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCore.Service", "DotNetCore.Service\DotNetCore.Service.csproj", "{360C6989-B5C0-4680-A7C1-34C4F11B3982}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,14 +37,14 @@ Global
 		{9B2F7A07-64F7-4A2A-8D96-4937FB6CF333}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B2F7A07-64F7-4A2A-8D96-4937FB6CF333}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B2F7A07-64F7-4A2A-8D96-4937FB6CF333}.Release|Any CPU.Build.0 = Release|Any CPU
-		{54A47220-36C4-4CFE-B70E-7AEE943665EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{54A47220-36C4-4CFE-B70E-7AEE943665EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{54A47220-36C4-4CFE-B70E-7AEE943665EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{54A47220-36C4-4CFE-B70E-7AEE943665EA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6EFA6996-B12D-4D54-9CBC-44B349F558B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6EFA6996-B12D-4D54-9CBC-44B349F558B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6EFA6996-B12D-4D54-9CBC-44B349F558B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6EFA6996-B12D-4D54-9CBC-44B349F558B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57AA9278-5580-4EC7-B969-6C7AA01D33B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57AA9278-5580-4EC7-B969-6C7AA01D33B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57AA9278-5580-4EC7-B969-6C7AA01D33B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57AA9278-5580-4EC7-B969-6C7AA01D33B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{360C6989-B5C0-4680-A7C1-34C4F11B3982}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{360C6989-B5C0-4680-A7C1-34C4F11B3982}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{360C6989-B5C0-4680-A7C1-34C4F11B3982}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{360C6989-B5C0-4680-A7C1-34C4F11B3982}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

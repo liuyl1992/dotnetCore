@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DotnetCore.DAL\DotnetCore.DAL.csproj" />
+    <ProjectReference Include="..\DotNetCore.Service\DotNetCore.Service.csproj" />
   </ItemGroup>
 
 </Project>

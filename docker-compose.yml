@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  dockermvc.web:
+    image: dockermvc.web
+    build:
+      context: ./DockerMVC.Web
+      dockerfile: Dockerfile
+
+  dotnetcoremvc20.web:
+    image: dotnetcoremvc20.web
+    build:
+      context: ./DotnetcoreMVC20.Web
+      dockerfile: Dockerfile

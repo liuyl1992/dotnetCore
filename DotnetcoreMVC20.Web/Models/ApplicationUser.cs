@@ -10,8 +10,8 @@ namespace DotnetcoreMVC20.Web.Models
 	public class ApplicationUser : IdentityUser
 	{
 		/// <summary>
-		/// 昵称
+		/// 微信Id
 		/// </summary>
-		public string NickName { get; set; }
+		public string WeChatId { get; set; }
 	}
 }

@@ -1,6 +1,6 @@
 ﻿using DotnetCore.Entity;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.Extensions.Configuration;
 
 namespace DotnetCore.DAL
 {
@@ -9,8 +9,14 @@ namespace DotnetCore.DAL
 		//https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/complex-data-model
 		public SchoolContext(DbContextOptions<SchoolContext> options) : base(options)
 		{
-			
+
 		}
+
+		//private IConfigurationRoot _config;
+		//public SchoolContext(IConfigurationRoot config, DbContextOptions options) : base(options)
+		//{
+		//	_config = config;
+		//}
 
 		public DbSet<Course> Courses { get; set; }
 		public DbSet<Enrollment> Enrollments { get; set; }

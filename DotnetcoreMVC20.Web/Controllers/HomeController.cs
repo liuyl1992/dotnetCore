@@ -5,33 +5,42 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DotnetcoreMVC20.Web.Models;
+using DotNetCore.Service;
 
 namespace DotnetcoreMVC20.Web.Controllers
 {
-    public class HomeController : Controller
-    {
-        public IActionResult Index()
-        {
-            return View();
-        }
+	public class HomeController : Controller
+	{
+		private readonly IDemoService _demoService;
 
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
+		public HomeController(IDemoService demoService)
+		{
+			_demoService = demoService;
+		}
+		public async Task<IActionResult> Index()
+		{
+			var temp = await _demoService.Method();
+			TempData["Title"] = temp?.Title ?? null;
+			return View();
+		}
 
-            return View();
-        }
+		public IActionResult About()
+		{
+			ViewData["Message"] = "Your application description page.";
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
+			return View();
+		}
 
-            return View();
-        }
+		public IActionResult Contact()
+		{
+			ViewData["Message"] = "Your contact page.";
 
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-    }
+			return View();
+		}
+
+		public IActionResult Error()
+		{
+			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+		}
+	}
 }

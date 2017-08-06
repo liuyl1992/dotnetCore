@@ -15,6 +15,7 @@ using DotnetcoreMVC20.Web.Data;
 using DotnetcoreMVC20.Web.Models;
 using DotnetcoreMVC20.Web.Services;
 using DotnetCore.DAL;
+using DotNetCore.Service;
 
 namespace DotnetcoreMVC20.Web
 {
@@ -44,6 +45,12 @@ namespace DotnetcoreMVC20.Web
 			// Add application services.
 			services.AddTransient<IEmailSender, AuthMessageSender>();
 			services.AddTransient<ISmsSender, AuthMessageSender>();
+
+			//CustomerService
+
+			services.AddUnitOfWork<SchoolContext>();
+			services.AddScoped<IDemoService, DemoService>();
+			//services.AddTransient<IDemoService, DemoService>();
 
 			services.AddMvc();
 		}

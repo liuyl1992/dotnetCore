@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  dockermvc.web:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+
+  dotnetcoremvc20.web:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace DotnetcoreMVC20.Web.Data.Migrations
+namespace DotnetcoreMVC20.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -39,8 +39,6 @@ namespace DotnetcoreMVC20.Web.Data.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
-                    b.Property<string>("NickName");
-
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
 
@@ -59,6 +57,8 @@ namespace DotnetcoreMVC20.Web.Data.Migrations
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
+
+                    b.Property<string>("WeChatId");
 
                     b.HasKey("Id");
 
