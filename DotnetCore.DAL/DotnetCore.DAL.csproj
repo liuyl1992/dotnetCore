@@ -7,7 +7,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\DotnetCore.Common\DotnetCore.Common.csproj" />
 		<ProjectReference Include="..\DotnetCore.Entity\DotnetCore.Entity.csproj" />
 	</ItemGroup>
 
