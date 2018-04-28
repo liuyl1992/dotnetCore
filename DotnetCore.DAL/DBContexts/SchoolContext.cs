@@ -10,15 +10,16 @@ namespace DotnetCore.DAL
 		public SchoolContext(DbContextOptions<SchoolContext> options) : base(options)
 		{
 
-		}
+        }
 
 		//private IConfigurationRoot _config;
 		//public SchoolContext(IConfigurationRoot config, DbContextOptions options) : base(options)
 		//{
 		//	_config = config;
 		//}
+        public DbSet<MYOwn> MYOwn { get; set; }
 
-		public DbSet<Course> Courses { get; set; }
+        public DbSet<Course> Courses { get; set; }
 		public DbSet<Enrollment> Enrollments { get; set; }
 		public DbSet<Student> Students { get; set; }
 		public DbSet<Department> Departments { get; set; }
@@ -28,7 +29,9 @@ namespace DotnetCore.DAL
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<Course>().ToTable("Course");
+            //modelBuilder.HasDefaultSchema("blogging");
+
+            modelBuilder.Entity<Course>().ToTable("Course");
 			modelBuilder.Entity<Enrollment>().ToTable("Enrollment");
 			modelBuilder.Entity<Student>().ToTable("Student");
 			modelBuilder.Entity<Department>().ToTable("Department");
@@ -39,5 +42,10 @@ namespace DotnetCore.DAL
 			modelBuilder.Entity<CourseAssignment>()
 				.HasKey(c => new { c.CourseID, c.InstructorID });
 		}
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+          
+        }
 	}
 }

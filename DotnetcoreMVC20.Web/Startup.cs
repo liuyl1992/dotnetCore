@@ -16,69 +16,122 @@ using DotnetcoreMVC20.Web.Models;
 using DotnetcoreMVC20.Web.Services;
 using DotnetCore.DAL;
 using DotNetCore.Service;
+using DotnetcoreMVC20.Web.Models.IoC;
+using System.Reflection;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace DotnetcoreMVC20.Web
 {
-	public class Startup
-	{
-		public Startup(IConfiguration configuration)
-		{
-			Configuration = configuration;
-		}
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
 
-		public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; }
 
-		// This method gets called by the runtime. Use this method to add services to the container.
-		public void ConfigureServices(IServiceCollection services)
-		{
-			services.AddDbContext<ApplicationDbContext>(options =>
-				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public IServiceProvider ConfigureServices(IServiceCollection services)
+        {
+            //支持IIS
+            services.Configure<IISOptions>(options =>
+            {
+                options.ForwardClientCertificate = false;
+            });
 
-			//链接到sql server数据库
-			services.AddDbContext<SchoolContext>(options =>
-				options.UseSqlServer(Configuration.GetConnectionString("ConsumerConnection")));
+            services.AddDistributedRedisCache(option =>
+            {
+                option.Configuration = "localhost";//redis连接字符串
 
-			services.AddIdentity<ApplicationUser, IdentityRole>()
-				.AddEntityFrameworkStores<ApplicationDbContext>()
-				.AddDefaultTokenProviders();
+            });
 
-			// Add application services.
-			services.AddTransient<IEmailSender, AuthMessageSender>();
-			services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddDbContextPool<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-			//CustomerService
 
-			services.AddUnitOfWork<SchoolContext>();
-			services.AddScoped<IDemoService, DemoService>();
-			//services.AddTransient<IDemoService, DemoService>();
+            //链接到sql server数据库
+            services.AddDbContextPool<SchoolContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("ConsumerConnection")));
 
-			services.AddMvc();
-		}
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
-		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-		{
-			if (env.IsDevelopment())
-			{
-				app.UseDeveloperExceptionPage();
-				app.UseBrowserLink();
-				app.UseDatabaseErrorPage();
-			}
-			else
-			{
-				app.UseExceptionHandler("/Home/Error");
-			}
+            //CustomerService
 
-			app.UseStaticFiles();
+            services.AddUnitOfWork<SchoolContext>();
 
-			app.UseAuthentication();
+            services.AddMvc();
+            return InitIoC(services);
+        }
 
-			app.UseMvc(routes =>
-			{
-				routes.MapRoute(
-					name: "default",
-					template: "{controller=Home}/{action=Index}/{id?}");
-			});
-		}
-	}
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            //初始化数据库
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                //自动迁移
+                var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
+                var contextSchoolContext = serviceScope.ServiceProvider.GetService<SchoolContext>();
+
+                //if (context.Database.GetPendingMigrations().Any())
+                if (context.Database.EnsureCreated())
+                {
+                    Console.WriteLine("Migrating...");
+                    //执行迁移
+                    context.Database.EnsureCreated();
+                    context.Database.Migrate();
+                    Console.WriteLine("Migrated End");
+                }
+                //if (contextSchoolContext.Database.GetPendingMigrations().Any())
+                if (context.Database.EnsureCreated())
+                {
+                    Console.WriteLine("Migrating...");
+                    //执行迁移
+                    contextSchoolContext.Database.Migrate();
+                    Console.WriteLine("Migrated End");
+                }
+
+            }
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
+                app.UseDatabaseErrorPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
+
+            app.UseStaticFiles();
+
+            app.UseAuthentication();
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
+        }
+
+        /// <summary>
+        /// IoC初始化
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
+        private IServiceProvider InitIoC(IServiceCollection services)
+        {
+            IoCContainer.Register(new Dictionary<string, string>() { { "DotNetCore.Service", "Service" } });
+            IoCContainer.Register<IDemoService, DemoService>();
+            IoCContainer.Register<IEmailSender, AuthMessageSender>();
+            IoCContainer.Register<ISmsSender, AuthMessageSender>();
+            return IoCContainer.Build(services);
+        }
+    }
 }

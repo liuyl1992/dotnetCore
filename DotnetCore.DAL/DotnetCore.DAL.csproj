@@ -1,23 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netcoreapp2.0</TargetFramework>
+		<TargetFramework>netcoreapp2.1</TargetFramework>
 		<AssemblyName>DotnetCore</AssemblyName>
 		<RootNamespace>DotnetCore</RootNamespace>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Core\**" />
+	  <EmbeddedResource Remove="Core\**" />
+	  <None Remove="Core\**" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\DotnetCore.Entity\DotnetCore.Entity.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0-preview2-final" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0-preview2-final" PrivateAssets="All" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.UnitOfWork" Version="1.1.3" />
+		<PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0-preview2-final" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.0-preview2-final" PrivateAssets="All" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.UnitOfWork" Version="2.0.4" />
 		<!--<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0-preview2-final" PrivateAssets="All" />-->
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Core\GenericRepositorys\" />
 	</ItemGroup>
 </Project>
