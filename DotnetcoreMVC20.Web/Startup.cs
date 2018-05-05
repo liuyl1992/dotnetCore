@@ -25,9 +25,15 @@ namespace DotnetcoreMVC20.Web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IHostingEnvironment env)
         {
-            Configuration = configuration;
+            //配置appsettings文件
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+            this.Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -87,7 +93,7 @@ namespace DotnetcoreMVC20.Web
                     Console.WriteLine("Migrated End");
                 }
                 //if (contextSchoolContext.Database.GetPendingMigrations().Any())
-                if (context.Database.EnsureCreated())
+                if (contextSchoolContext.Database.EnsureCreated())
                 {
                     Console.WriteLine("Migrating...");
                     //执行迁移
@@ -128,7 +134,7 @@ namespace DotnetcoreMVC20.Web
         private IServiceProvider InitIoC(IServiceCollection services)
         {
             IoCContainer.Register(new Dictionary<string, string>() { { "DotNetCore.Service", "Service" } });
-            IoCContainer.Register<IDemoService, DemoService>();
+            //IoCContainer.Register<IDemoService, DemoService>();
             IoCContainer.Register<IEmailSender, AuthMessageSender>();
             IoCContainer.Register<ISmsSender, AuthMessageSender>();
             return IoCContainer.Build(services);

@@ -11,6 +11,7 @@ namespace RedisCore
     public class RedisClient
     {
         private static readonly object _syncRedis = new object();
+
         private TimeSpan _DefaultCacheTimeSpan = TimeSpan.FromDays(1);
 
         private static bool _IsRedisAlive = false;

@@ -33,6 +33,7 @@ namespace DotnetcoreMVC20.Web.Models.IoC
 
         /// <summary>
         /// 注册程序集
+        /// 接口和实现分散在多处程序集
         /// </summary>
         /// <param name="assemblies">程序集名称的集合</param>
         public static void Register(params string[] assemblies)
